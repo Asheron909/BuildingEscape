@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Components/ActorComponent.h"
+#include "Components/InputComponent.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "Grabber.generated.h"
 
@@ -27,4 +28,21 @@ private:
 	float Reach = 100.0f;
 	
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
+
+	UInputComponent* InputComponent = nullptr;
+
+	// Ray-cast and grab what's in reach
+	void Grab();
+
+	// Ray-cast and grab what's in reach
+	void Release();
+
+	// Find attached physics component
+	void FindPhysicsHandleComponent();
+
+	// Setup (assumed) attached Input Component
+	void SetupInputComponent();
+
+	// Return hit for first physics body in reach
+	const FHitResult GetFirstPhysicsBodyInReach();
 };
