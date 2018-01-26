@@ -8,9 +8,12 @@
 */Intermediate
 */Saved
 
-BuildingEscape/Content/StarterContent/
+BuildingEscape/Content/StarterContent/Textures
+BuildingEscape/Content/StarterContent/HDRI
 
 ######################
 # VC Generated Files #
 ######################
 *.VC.db
+*.suo
+*.VC.opendb
