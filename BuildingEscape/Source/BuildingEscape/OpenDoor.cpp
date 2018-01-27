@@ -22,6 +22,7 @@ void UOpenDoor::BeginPlay()
 	Super::BeginPlay();
 
 	Owner = GetOwner();
+	FindPressurePlateComponent();
 }
 
 void UOpenDoor::OpenDoor() {
@@ -52,11 +53,19 @@ void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorCompo
 	}
 }
 
+/// Look for attached Pressure Plate component
+void UOpenDoor::FindPressurePlateComponent() {
+	if (!PressurePlate) {
+		UE_LOG(LogTemp, Error, TEXT("%s missing pressure plate"), *GetOwner()->GetName());
+	}
+}
+
 float UOpenDoor::GetTotalMassOfActorsOnPlate() {
 	float TotalMass = 0.0f;
 
 	// Find all the overlapping actors
 	TArray<AActor*> OverlappingActors;
+	if (!PressurePlate) { return TotalMass; }
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
 
 	// Iterate through them adding their masses
